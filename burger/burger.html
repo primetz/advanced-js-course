@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Burger</title>
+    <link rel="stylesheet" href="burger.css">
+</head>
+<body>
+<form action="#" class="form-burger">
+<fieldset class="form-burger__wrap">
+    <legend class="form-burger__title">Собери свой бургер</legend>
+    <fieldset class="form-burger__item">
+        <legend>Выберите размер бургера</legend>
+        <input type="radio" id="small" name="size" data-price="50" data-calories="20">
+        <label for="small">Маленький (50 рублей, 20 калорий)</label>
+        <input type="radio" id="big" name="size" data-price="100" data-calories="40">
+        <label for="big">Большой (100 рублей, 40 калорий)</label>
+    </fieldset>
+    <fieldset class="form-burger__item">
+        <legend>Выберите начинку</legend>
+        <input type="radio" id="cheese" name="filling" data-price="10" data-calories="20">
+        <label for="cheese">С сыром (+10 рублей, +20 калорий)</label>
+        <input type="radio" id="salad" name="filling" data-price="20" data-calories="5">
+        <label for="salad">С салатом (+20 рублей, +5 калорий)</label>
+        <input type="radio" id="potatoes" name="filling" data-price="15" data-calories="10">
+        <label for="potatoes">С картофелем (+15 рублей, +10 калорий)</label>
+    </fieldset>
+    <fieldset class="form-burger__item">
+        <legend>Выберите опции</legend>
+        <input type="checkbox" id="seasoning" name="options" data-price="15" data-calories="0">
+        <label for="seasoning">Посыпать приправой (+15 рублей, +0 калорий)</label>
+        <input type="checkbox" id="mayonnaise" name="options" data-price="20" data-calories="5">
+        <label for="mayonnaise">Полить майонезом (+20 рублей, +5 калорий)</label>
+    </fieldset>
+    <button type="button">Собрать</button>
+    <span class="result">Цена: <span id="price">0</span> руб. <span id="calories">0</span> Калорий</span>
+</fieldset>
+</form>
+<script src="burger.js"></script>
+</body>
+</html>

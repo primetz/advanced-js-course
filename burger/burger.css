@@ -1,0 +1,48 @@
+body {
+    font-family: sans-serif;
+}
+
+.form-burger {
+    width: 500px;
+    margin: 50px auto;
+}
+
+.form-burger__wrap {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #212121;
+    border-radius: 6px;
+}
+
+.form-burger__title {
+    font-size: 22px;
+    text-align: right;
+}
+
+.form-burger__item {
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #212121;
+    border-radius: 4px;
+    margin-bottom: 25px;
+}
+
+label {
+    width: 90%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100px;
+    padding: 8px;
+}
+
+.result {
+    align-self: flex-end;
+}
+
+#calories {
+    margin-left: 15px;
+}
