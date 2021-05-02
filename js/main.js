@@ -13,15 +13,22 @@ const app = new Vue({
         imgCatalog: 'https://via.placeholder.com//200x150',
         imgBasket: 'https://via.placeholder.com//70x70',
         showCart: false,
+        error: false,
+        errorMessage: 'Не удалось выполнить запрос к серверу',
         goods: [],
         basket: [],
+        filtered: [],
         filter: ''
     },
     methods: {
         getJson(url) {
             return fetch(`${this.api.responses + url}`)
-                .then(result => result.json())
-                .catch(error => console.log(error));
+                .then(result => {
+                    return result.json();
+                })
+                .catch(error => {
+                    this.$data.error = true;
+                });
         },
         addProduct(product) {
             this.getJson(this.api.addToBasket)
@@ -31,13 +38,7 @@ const app = new Vue({
                         if (find) {
                             find.quantity++;
                         } else {
-                            const basketProduct = {
-                                id_product: product.id_product,
-                                product_name: product.product_name,
-                                price: product.price,
-                                quantity: 1
-                            };
-                            this.basket.push(basketProduct);
+                            this.basket.push(Object.assign({quantity: 1}, product));
                         }
                     } else {
                         alert('Error');
@@ -61,17 +62,7 @@ const app = new Vue({
         },
         filterGoods() {
             const regExp = new RegExp(this.filter, 'i');
-            if (this.filter) {
-                this.getJson(this.api.catalogData)
-                    .then(data => {
-                        this.goods = data.filter(product => regExp.test(product.product_name));
-                    });
-            } else {
-                this.getJson(this.api.catalogData)
-                    .then(data => {
-                        this.goods = data;
-                    })
-            }
+            this.goods = this.filtered.filter(product => regExp.test(product.product_name));
         }
     },
     mounted() {
@@ -79,6 +70,7 @@ const app = new Vue({
             .then(data => {
                 for (let el of data) {
                     this.goods.push(el);
+                    this.filtered.push(el);
                 }
             });
         this.getJson(this.api.getBasket)

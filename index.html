@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shop</title>
+    <title>Test</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -12,36 +13,19 @@
 <div id="app">
     <header class="header">
         <div class="logo">E-shop</div>
-        <form @submit.prevent="filterGoods" action="#" class="search-form">
-            <input v-model="filter" type="search" id="search" class="search-form__input">
-            <button class="search-form__btn fas fa-search"></button>
-        </form>
-        <div class="cart">
-            <button @click="showCart=!showCart" class="btn-cart" type="button">Корзина</button>
-            <div v-if="showCart" class="cart-menu">
-                <span v-if="!basket.length" class="no-data">Нет данных</span>
-                <div v-for="product in basket" class="cart-item" :key="product.id_product">
-                    <img :src="imgBasket" class="cart-item__img" alt="Some img">
-                    <h3 class="cart-item__title">{{ product.product_name }}</h3>
-                    <span class="cart-item__quantity">{{ product.quantity }}</span>
-                    <p class="cart-item__price">{{ product.price * product.quantity }}</p>
-                    <button @click="removeProduct(product)" class="remove-btn">&times;</button>
-                </div>
-            </div>
-        </div>
+        <filter-form :filter="filter"></filter-form>
+        <cart :products="basket" :img="imgBasket" :show-cart="showCart" @remove-product="removeProduct"></cart>
     </header>
     <main>
-        <div class="products">
-            <div v-for="product in goods" class="product-item" :key="product.id_product">
-                <img :src="imgCatalog" class="product-item__photo" alt="Some img">
-                <h3 class="product-item__title">{{ product.product_name }}</h3>
-                <p class="product-item__price">{{ product.price }}</p>
-                <button @click="addProduct(product)" class="buy-btn">Купить</button>
-            </div>
-        </div>
+        <products :products="goods" :img="imgCatalog" @add-product="addProduct"></products>
     </main>
+    <error :message="errorMessage" :error="error"></error>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<script src="js/ProductsComponent.js"></script>
+<script src="js/CartComponent.js"></script>
+<script src="js/FilterComponent.js"></script>
+<script src="js/ErrorComponent.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
