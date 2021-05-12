@@ -1,0 +1,23 @@
+.feedback-form {
+    width: 350px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+input,
+textarea {
+    margin-bottom: 25px;
+    border: 1px solid #212121;
+    border-radius: 2px;
+}
+
+.error,
+.error:focus {
+    border-color: tomato;
+    outline-color: tomato;
+}
+
+.error-msg {
+    color: tomato;
+}
